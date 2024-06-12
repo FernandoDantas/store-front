@@ -10,14 +10,26 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProductListComponent {
   products: Product[] = [];
+  searchName: string = '';
+  searchCategory: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+   this.loadProducts();
+  }
+
+  loadProducts(): void {
     this.authService.getProducts().subscribe(data => {
       this.products = data;
     }, error => {
       console.error('Error fetching products', error);
+    });
+  }
+
+  searchProducts(): void {
+    this.authService.searchProducts(this.searchName, this.searchCategory).subscribe((products) => {
+      this.products = products;
     });
   }
 

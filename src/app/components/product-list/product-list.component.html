@@ -15,6 +15,11 @@
 
   <div class="mt-4">
     <h2>Product List</h2>
+    <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchName">
+      <input type="text" class="form-control mt-2" placeholder="Search by category" [(ngModel)]="searchCategory">
+      <button class="btn btn-primary mt-2" (click)="searchProducts()">Search</button>
+      <br>
+      <br>
     <table class="table table-bordered">
       <thead>
         <tr>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Product } from '../models/product';
 
@@ -70,6 +70,15 @@ export class AuthService {
     return this.http.get(this.categoriesUrl, { headers: this.getAuthHeaders() });
   }
 
-
+  searchProducts(name: string, category: string): Observable<Product[]> {
+    let params = new HttpParams();
+    if (name) {
+      params = params.set('name', name);
+    }
+    if (category) {
+      params = params.set('category', category);
+    }
+    return this.http.get<Product[]>(this.productsUrl + '/' + "search", { params, headers: this.getAuthHeaders() });
+  }
 
 }

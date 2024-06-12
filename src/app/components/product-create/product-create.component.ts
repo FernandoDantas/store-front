@@ -53,4 +53,9 @@ export class ProductCreateComponent {
     this.product.price = this.produtoForm.get('price')?.value;
     this.product.category = this.produtoForm.get('category')?.value;
   }
+
+  goBack() {
+    this.router.navigate(['/products']);
+  }
+
 }
